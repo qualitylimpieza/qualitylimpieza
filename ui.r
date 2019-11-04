@@ -1,6 +1,5 @@
 
-# input -------------------------------------------------------------------
-  
+# input ---------------------------------------------------------------
 input_data_tab<-function(){
   tabItem(tabName = "input_data_tab",
   fluidRow(
@@ -70,9 +69,7 @@ textInput(inputId="agenda_op_tipo",label="agenda_op_tipo",placeholder="Change pl
   )
   )
   }
-
-# browse tab function ------------------------------------------------------------------
-  
+# browse tab function -------------------------------------------------
 browse_data_tab<-function(){
   tabItem(tabName = "browse_data_tab",
   fluidRow(
@@ -89,32 +86,21 @@ browse_data_tab<-function(){
   )
   }
 
-# Dashboard ---------------------------------------------------------------
-  
+# Dashboard -----------------------------------------------------------
 dashboardPage(
   dashboardHeader(title = "Quality Limpieza"),
-  dashboardSidebar(
-  width = 150,
-  sidebarMenu(
-  id = "tabs",
-  menuItem("Alta", tabName = "input_data_tab", icon=icon("file-alt")),
-  menuItem("Busqueda",tabName = "browse_data_tab",icon = icon("archive"))
-  )
-  ),
+  dashboardSidebar(width = 150, 
+                   sidebarMenu(id = "tabs",
+                               menuItem("Alta", tabName = "input_data_tab", icon=icon("file-alt")),
+                               menuItem("Busqueda",tabName = "browse_data_tab",icon = icon("archive")))),
   dashboardBody(
-  #tags$head(includeScript("tracking.js")),
-  useShinyjs(),
-  #shinyjs::inlineCSS(appCSS),
-  tags$head(tags$style(HTML("
-  .shiny-split-layout > div {
-  overflow: visible;
-  }
-  "))),
-  tabItems(
-  input_data_tab(),
-  browse_data_tab()
-  ),
-  use_bs_tooltip()
-  )
+    #tags$head(includeScript("tracking.js")),
+    useShinyjs(),
+    #shinyjs::inlineCSS(appCSS),
+    tags$head(tags$style(HTML(".shiny-split-layout > div {overflow: visible;}"))),
+    tabItems(
+      input_data_tab(),
+      browse_data_tab()),
+    use_bs_tooltip())
 )
 

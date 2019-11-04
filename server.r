@@ -1,18 +1,17 @@
 function(input, output, session) {
-
-dataset_to_save<-reactive({
-my_data <- tibble(
-id_n=input$id_n,
-id_fecha=input$id_fecha,
-op_tipo=input$op_tipo,
-activo_tipo=input$activo_tipo,
-activo_código=input$activo_código,
-activo_mercado=input$activo_mercado,
-at_desc=input$at_desc,
-at_conclusión=input$at_conclusión,
-at_señal_entrada_esperada=input$at_señal_entrada_esperada,
-agenda_fecha=input$agenda_fecha,
-agenda_op_tipo=input$agenda_op_tipo)
+  dataset_to_save<-reactive({
+    my_data <- tibble(
+      id_n=input$id_n,
+      id_fecha=input$id_fecha,
+      op_tipo=input$op_tipo,
+      activo_tipo=input$activo_tipo,
+      activo_código=input$activo_código,
+      activo_mercado=input$activo_mercado,
+      at_desc=input$at_desc,
+      at_conclusión=input$at_conclusión,
+      at_señal_entrada_esperada=input$at_señal_entrada_esperada,
+      agenda_fecha=input$agenda_fecha,
+      agenda_op_tipo=input$agenda_op_tipo)
  return(my_data)})
 
 registerData<-observeEvent(input$save,{
@@ -29,7 +28,6 @@ registerData<-observeEvent(input$save,{
   ))
 })
 allData<-function(){
-
     my_data<-tbl(conn,datatable)%>%collect()
     shiny::validate(need(nrow(my_data)>0,"no data"))
     return(my_data)
@@ -58,7 +56,4 @@ output$download_data <- downloadHandler(
   paste("download_data", ".csv", sep = "")
   },
   content = function(file) {
-  write_csv(allData(), file)
-  }
-  )
-}
+  write_csv(allData(), file)})}
